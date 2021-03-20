@@ -186,10 +186,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                <button type="submit" class="btn btn-primary"
-                @if ()
-
-                @endif>Confirmar baixa</button>
+                <button type="submit" class="btn btn-primary">Confirmar baixa</button>
             </div>
             </form>
         </div>
