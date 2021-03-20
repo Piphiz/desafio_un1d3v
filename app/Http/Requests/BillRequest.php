@@ -27,7 +27,8 @@ class BillRequest extends FormRequest
             'bill_identifier' => 'required|min:3',
             'bill_date' => 'required|date',
             'bill_amount' => 'required|numeric|min:0,01',
-            'bill_type' => 'required'
+            'bill_type' => 'required',
+            'bill_stats' => 'required'
         ];
     }
 }
