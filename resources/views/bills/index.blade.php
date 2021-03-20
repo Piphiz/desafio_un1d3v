@@ -102,10 +102,10 @@
                                     <tr class="table-danger">
                                     @endif
                                 @endif
-                                    <td scope="col">{{ $bill->id }}</td>
-                                    <td scope="col">{{ $bill->bill_identifier }}</td>
-                                    <td scope="col">{{ $bill->bill_date->format('d/m/Y') }}</td>
-                                    <td scope="col">{{ $bill->price_formated }}</td>
+                                    <td class="align-middle">{{ $bill->id }}</td>
+                                    <td class="align-middle">{{ $bill->bill_identifier }}</td>
+                                    <td class="align-middle">{{ $bill->bill_date->format('d/m/Y') }}</td>
+                                    <td class="align-middle">{{ $bill->price_formated }}</td>
                                     @if ($bill->bill_stats == 1 && $bill->bill_type == 0)
                                         <td class="align-middle"><span class="badge bg-success">Pago em dia</span></td>
                                     @else
@@ -119,7 +119,7 @@
                                             @endif
                                         @endif
                                     @endif
-                                    <td scope="col">
+                                    <td class="align-middle">
                                         <button type="button" class="btn btn-success btn-sm"  action="{{ route('bill.update', $bill->id)}}" data-bs-toggle="modal" data-bs-target="#exampleModal">Baixar</button>
                                         <a class="btn btn-danger btn-sm" onclick="deleteInDatabase('{{ route('bill.destroy', $bill->id)}}')">Excluir</a>
                                     </td>
