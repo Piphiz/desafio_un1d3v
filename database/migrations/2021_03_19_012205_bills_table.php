@@ -20,6 +20,7 @@ class BillsTable extends Migration
             $table->decimal('bill_amount', 8, 2);
             $table->boolean('bill_type');
             $table->boolean('bill_stats');
+            $table->timestamp('bill_down_date')->nullable();
             $table->timestamps();
         });
     }

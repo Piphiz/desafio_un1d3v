@@ -10,7 +10,7 @@ class Bill extends Model
 {
     use HasFactory;
 
-    protected $fillable = [ 'bill_identifier', 'bill_amount', 'bill_type', 'bill_date', 'bill_stats' ];
+    protected $fillable = [ 'bill_identifier', 'bill_amount', 'bill_type', 'bill_date', 'bill_stats', 'bill_down_date'];
 
     public function getPriceFormatedAttribute()
     {
@@ -18,7 +18,8 @@ class Bill extends Model
     }
 
     protected $casts = [
-        'bill_date' => 'datetime'
+        'bill_date' => 'datetime',
+        'bill_down_date'=> 'datetime'
     ];
 
     public function bill()
