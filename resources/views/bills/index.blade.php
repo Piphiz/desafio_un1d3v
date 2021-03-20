@@ -120,7 +120,7 @@
                                         @endif
                                     @endif
                                     <td class="align-middle">
-                                        <button type="button" class="btn btn-success btn-sm"  action="{{ route('bill.update', $bill->id)}}" data-bs-toggle="modal" data-bs-target="#exampleModal">Baixar</button>
+                                        <button type="button" class="btn btn-success btn-sm" onclick="showConfirmBillModal('{{ route('bill.update', $bill->id)}}')" data-bs-toggle="modal" data-bs-target="#confirm_bills_modal">Baixar</button>
                                         <a class="btn btn-danger btn-sm" onclick="deleteInDatabase('{{ route('bill.destroy', $bill->id)}}')">Excluir</a>
                                     </td>
                                 </tr>
@@ -170,34 +170,38 @@
         </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form action="">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Confirmação de Baixa</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal fade" id="confirm_bills_modal" tabindex="-1" aria-labelledby="confirm_bills_modal_label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="confirm_bills_form" action="" method="POST">
+                    @method("PUT")
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="confirm_bills_modal_label">Confirmação de Baixa</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="bill_down_date" class="form-label">Digite a data de pagamento</label>
+                            <input type="date" class="form-control" id="bill_down_date" name="bill_down_date" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary">Confirmar baixa</button>
+                    </div>
+                </form>
             </div>
-            <div class="modal-body">
-                <div class="mb-3">
-                    <label for="bill_down_date" class="form-label">Digite a data de pagamento</label>
-                    <input type="date" class="form-control" id="bill_down_date" name="bill_down_date" required>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                <button type="submit" class="btn btn-primary">Confirmar baixa</button>
-            </div>
-            </form>
         </div>
     </div>
+
     <!-- Forms -->
-        <form id="delete_form" action="" method="post">
+    <form id="delete_form" action="" method="post">
 
-        @csrf
-        @method('delete')
+    @csrf
+    @method('delete')
 
-      </form>
+    </form>
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
@@ -212,6 +216,11 @@
 
                 deleteForm.submit();
             }
+        }
+
+        function showConfirmBillModal(path) {
+            const confirmBillsForm = document.querySelector('#confirm_bills_form');
+            confirmBillsForm.action = path;
         }
 
     </script>
