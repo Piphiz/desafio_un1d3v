@@ -23,11 +23,20 @@ class BillRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        $rules = [
             'bill_identifier' => 'required|min:3',
             'bill_date' => 'required|date',
             'bill_amount' => 'required|numeric|min:0,01',
             'bill_type' => 'required'
         ];
+
+        if(empty($this->bill_identifier)){
+            unset($rules['bill_identifier']);
+            unset($rules['bill_date']);
+            unset($rules['bill_amount']);
+            unset($rules['bill_type']);
+        }
+
+        return $rules;
     }
 }
